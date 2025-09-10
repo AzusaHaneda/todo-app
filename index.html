@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>シンプルTODO</title>
-    <link rel="stylesheet" href="./style.css"/>
-</head>
-<body>
-    <h1>シンプルTODO</h1>
 
-    <form id="todo-form">
-        <input id="todo-input" type="text" placeholder="やることを入力..."/>
-        <button id="add-btn" type="submit">追加</button>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>大きくて見やすい ToDo リスト</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <main class="app" role="application" aria-label="ToDoリストアプリ">
+    <header>
+      <h1>ToDo リスト</h1>
+      <div class="count" id="count">0 件</div>
+    </header>
+
+    <form class="add" id="addForm" autocomplete="off">
+      <label class="sr-only" for="newTodo">新しいタスク</label>
+      <input id="newTodo" class="input" type="text" placeholder="例: ポートフォリオのToDo機能を完成させる" maxlength="120" required />
+      <button class="btn" id="addBtn" type="submit" aria-label="タスクを追加">追加</button>
     </form>
 
-    <ul id="todo-list"></ul>
+    <section class="controls" aria-label="絞り込みと操作">
+      <div class="filters" role="group" aria-label="フィルター">
+        <button class="chip" data-filter="all" aria-pressed="true">すべて</button>
+        <button class="chip" data-filter="active" aria-pressed="false">作業中</button>
+        <button class="chip" data-filter="done" aria-pressed="false">完了</button>
+      </div>
+      <div class="filters">
+        <button class="chip ghost" id="clearDone" type="button">完了一括削除</button>
+      </div>
+    </section>
 
-    <script src="./script.js"></script>
+    <ul class="list" id="list" aria-live="polite" aria-relevant="additions removals text"></ul>
+
+    <footer>
+      <div>Enterで追加 / 「…」から編集 / チェックで完了</div>
+      <div>データは <strong>ローカルストレージ</strong> に保存</div>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
 </body>
 
 </html>
